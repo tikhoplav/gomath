@@ -1,2 +1,2 @@
-package govector
+package math
 

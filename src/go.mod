@@ -1,3 +1,3 @@
-module github.com/tikhoplav/govector
+module github.com/tikhoplav/math
 
 go 1.15
