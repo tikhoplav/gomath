@@ -9,4 +9,4 @@ services:
     volumes:
       - ./src:/src
       - ./pkg:/go/pkg
-    command: go test
+    command: go test ./...
