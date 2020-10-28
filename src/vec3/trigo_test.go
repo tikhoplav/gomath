@@ -1,9 +1,9 @@
 package vec3
 
 import (
-	"testing"
 	"math"
 	"math/rand"
+	"testing"
 	"time"
 )
 
@@ -40,7 +40,7 @@ func TestCosTheorem(t *testing.T) {
 
 		var c = Sub(a, b)
 
-		err = err + Len2(c) - Len2(a) - Len2(b) + 2 * Len(a) * Len(b) * Cos(a, b)
+		err = err + Len2(c) - Len2(a) - Len2(b) + 2*Len(a)*Len(b)*Cos(a, b)
 	}
 
 	err = err / float64(n)
@@ -63,7 +63,7 @@ func TestSinTheorem(t *testing.T) {
 
 		var c = Sub(a, b)
 
-		err = err + Sin2(a, b) / Len2(c) - Sin2(a, c) / Len2(b)
+		err = err + Sin2(a, b)/Len2(c) - Sin2(a, c)/Len2(b)
 	}
 
 	err = err / float64(n)

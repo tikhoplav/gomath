@@ -72,7 +72,7 @@ func TestNormalized(t *testing.T) {
 	}
 }
 
-func TestScale(t *testing.T) {	
+func TestScale(t *testing.T) {
 	var a = New(2, 4, 0)
 	var b = New(1, 2, 0)
 

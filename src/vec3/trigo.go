@@ -6,15 +6,15 @@ import (
 
 // Returns squared cos of angle between two specified vectors.
 // It is recommended to use this function instead of regular Cos where
-// possible due to less number of required calculations. 
+// possible due to less number of required calculations.
 func Cos2(a Vec3, b Vec3) float64 {
 	var dot = Dot(a, b)
-	return dot * dot / ( Len2(a) * Len2(b) )
+	return dot * dot / (Len2(a) * Len2(b))
 }
 
 // Returns squared sin of angle between two specified vectors.
 // It is recommended to use this function instead of regular Sin where
-// possible due to less number of required calculations. 
+// possible due to less number of required calculations.
 func Sin2(a Vec3, b Vec3) float64 {
 	return 1 - Cos2(a, b)
 }
