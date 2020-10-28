@@ -87,20 +87,3 @@ func Project(a Vec3, b Vec3) Vec3 {
 	var l = Dot(a, n)
 	return Scale(n, l)
 }
-
-func Cos2(a Vec3, b Vec3) float64 {
-	var dot = Dot(a, b)
-	return dot * dot / ( Len2(a) * Len2(b) )
-}
-
-func Sin2(a Vec3, b Vec3) float64 {
-	return 1 - Cos2(a, b)
-}
-
-func Cos(a Vec3, b Vec3) float64 {
-	return math.Sqrt(Cos2(a, b))
-}
-
-func Sin(a Vec3, b Vec3) float64 {
-	return math.Sqrt(Sin2(a, b))
-}
