@@ -5,7 +5,7 @@ services:
     build:
       context: .
       target: develop
-    image: tikhoplav/govector:dev
+    image: tikhoplav/gomath:dev
     volumes:
       - ./src:/src
       - ./pkg:/go/pkg
