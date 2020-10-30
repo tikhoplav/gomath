@@ -1,3 +1,3 @@
-module github.com/tikhoplav/math
+module github.com/tikhoplav/gomath
 
 go 1.15

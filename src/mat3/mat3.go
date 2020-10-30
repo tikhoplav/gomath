@@ -42,3 +42,38 @@ func EqualsApprox(a Mat3, b Mat3, e float64) bool {
 	}
 	return res
 }
+
+// Returns a determinant of a matrix.
+func Determinant(a Mat3) float64 {
+	return a[0]*(a[4]*a[8] - a[5]*a[7]) -
+		a[1]*(a[3]*a[8] - a[5]*a[6]) +
+		a[2]*(a[3]*a[7] - a[4]*a[6])
+}
+
+// Returns scaled version of matrix by given scalar.
+func Scale(a Mat3, s float64) Mat3 {
+	return Mat3 {
+		s*a[0], s*a[1], s*a[2],
+		s*a[3], s*a[4], s*a[5],
+		s*a[6], s*a[7], s*a[8],
+	}
+}
+
+// Returns transposed matrix to the given.
+func Transpose(a Mat3) Mat3 {
+	return Mat3 {
+		a[0], a[3], a[6],
+		a[1], a[4], a[7],
+		a[2], a[5], a[8],
+	}
+}
+
+// Returns inverse matrix to the given.
+func Inverse(a Mat3) Mat3 {
+	var i = Mat3 {
+		a[4]*a[8] - a[5]*a[7], a[5]*a[6] - a[3]*a[8], a[3]*a[7] - a[4]*a[6],
+		a[2]*a[7] - a[1]*a[8], a[0]*a[8] - a[2]*a[6], a[1]*a[6] - a[0]*a[7],
+		a[1]*a[5] - a[2]*a[4], a[2]*a[3] - a[0]*a[5], a[0]*a[4] - a[1]*a[3],
+	}
+	return Scale(Transpose(i), Determinant(a))
+}
