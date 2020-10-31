@@ -1,28 +1,22 @@
 package gomath
 
-import (
-	"math"
-)
-
+// Represents 3x3 matrix. New instance can be created as: var m = Mat3{0, 1, 2}
+// All omitted components will be set to 0 by default. For optimisation purpose
+// indecies are represented by a single number from 0 to 8, in contrast with
+// common math notation, where components are specified by two indecies. Each
+// component is represented by the floating point number and can be accessed by
+// it's index, for example: var a21 = m[3]. As well as can be set explicitly:
+// m[3] = 3.14.
 type Mat3 [9]float64
 
-// Checks if matrices are identical. In order to prevent falty denials
-// function EqualsApprox can be used instead.
-func (a Mat3) Equals(b Mat3) bool {
+// Returns true if matrices are equal and false if matrices are unequal. Second
+// parameter epsilon can be used to define precision of the comparison. Default
+// value of epsion is set by constant EPSILON. In order to prevent error caused
+// by floating point number representation, calculations done approximately.
+func (a Mat3) Equals(b Mat3, e ...float64) bool {
 	res := true
 	for i := 0; i < 9; i++ {
-		res = res && a[i] == b[i]
-	}
-	return res
-}
-
-// Checks if components of specified matrices differs not more then provided
-// epsilon. This function is recomended to use instead of regular Equals in
-// order to prevent falty denials due to floating point number representation.
-func (a Mat3) EqualsApprox(b Mat3, e float64) bool {
-	res := true
-	for i := 0; i < 9; i++ {
-		res = res && math.Abs(a[i]-b[i]) <= e
+		res = res && Equals(a[i], b[i], e...)
 	}
 	return res
 }

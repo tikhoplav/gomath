@@ -28,17 +28,14 @@ func TestVec3Equals(t *testing.T) {
 func TestVec3EqualsApprox(t *testing.T) {
 	var a = Vec3{1, 0, 0}
 	var b = Vec3{1, 0.001, 0.001}
-	var e = 0.001
-	if !a.EqualsApprox(b, e) {
+	if !a.Equals(b, 0.001) {
 		f := `Expected vectors
 		%v and
 		%v
 		to be approximately equal with e = 0.001`
 		t.Errorf(f, a, b)
 	}
-
-	e = 0.0001
-	if a.EqualsApprox(b, e) {
+	if a.Equals(b, 0.0001) {
 		f := `Expected vectors
 		%v and
 		%v
@@ -99,7 +96,7 @@ func TestVec3Normalized(t *testing.T) {
 	var a = Vec3{2, 1, 2}
 	var b = Vec3{0.666, 0.333, 0.666}
 	var c = a.Normalize()
-	if !c.EqualsApprox(b, 0.001) {
+	if !c.Equals(b, 0.001) {
 		f := `Vector %v normalized
 		expect to be equal %v,
 		got %v`
@@ -153,7 +150,7 @@ func TestVec3Project(t *testing.T) {
 	var b = Vec3{4, 3, 2}
 	var c = Vec3{2.2, 1.65, 1.1}
 	var p = a.Project(b)
-	if !p.EqualsApprox(c, 0.01) {
+	if !p.Equals(c, 0.01) {
 		f := `Projection of vector
 		%v onto vector
 		%v

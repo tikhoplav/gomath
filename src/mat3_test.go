@@ -18,17 +18,14 @@ func TestMat3Equals(t *testing.T) {
 func TestMat3EqualsApprox(t *testing.T) {
 	var a = Mat3{1, 0, 1}
 	var b = Mat3{1.001, 0.001, 1.001}
-	var e = 0.001
-	if !a.EqualsApprox(b, e) {
+	if !a.Equals(b, 0.001) {
 		f := `Expected next matrices to be approximately equal
 		with e = 0.001:
 		%v and
 		%v`
 		t.Errorf(f, a, b)
 	}
-
-	e = 0.0001
-	if a.EqualsApprox(b, e) {
+	if a.Equals(b, 0.0001) {
 		f := `Expected next matrices to be approximately unequal
 		with e = 0.0001:
 		%v and
@@ -64,7 +61,7 @@ func TestMat3Inverse(t *testing.T) {
 	var a = Mat3{0, 1, 2, 1, 4, 0, 0, 8, 6} // Det is 10
 	var b = Mat3{2.4, 1, -0.8, -0.6, 0, 0.2, 0.8, 0, -0.1}
 	var c = a.Inv()
-	if !c.EqualsApprox(b, 0.001) {
+	if !c.Equals(b) {
 		f := `Inverse matrix to
 		%v expected to be
 		%v,

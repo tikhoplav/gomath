@@ -1,39 +1,33 @@
 package gomath
 
-import (
-	"math"
-)
-
+// Represents three dimensional vector. For clarity purposes component's names
+// are set as x, y and z. Components are represented by floating point numbers.
+// New instance can be created as: var a = Vec3{x, y, z}. Each component can be
+// set explicitly: a.X = 3.14.
 type Vec3 struct {
 	X, Y, Z float64
 }
 
-// Checks if specified vectors are equal. In order to prevent errors casued by
-// floating point number representation, it's recomended to use EqualsApprox
-// function instead.
-func (a Vec3) Equals(b Vec3) bool {
-	return a.X == b.X && a.Y == b.Y && a.Z == b.Z
-}
-
-// Checks if differences between vectors components less then specified epsilon
-// This function may prevent falty denials caused by floating point number
-// representation.
-func (a Vec3) EqualsApprox(b Vec3, e float64) bool {
-	dx := a.X - b.X
-	dy := a.Y - b.Y
-	dz := a.Z - b.Z
-	return math.Abs(dx) <= e && math.Abs(dy) <= e && math.Abs(dz) <= e
+// Returns true if vectors are equal and false if vectors are unequal. Second
+// parameter epsilon can be used to define precision of the comparison. Default
+// value of epsion is set by constant EPSILON. In order to prevent error caused
+// by floating point number representation, calculations done approximately.
+func (a Vec3) Equals(b Vec3, e ...float64) bool {
+	dx := Equals(a.X, b.X, e...)
+	dy := Equals(a.Y, b.Y, e...)
+	dz := Equals(a.Z, b.Z, e...)
+	return dx && dy && dz
 }
 
 // Returns vectors squared magnitude. This function recomended to be used where
 // possible, since lower computational cost compared to Len function.
 func (a Vec3) Len2() float64 {
-	return a.X*a.X + a.Y*a.Y + a.Z*a.Z
+	return a.X * a.X + a.Y * a.Y + a.Z * a.Z
 }
 
 // Returns magnitude of specified vector.
 func (a Vec3) Len() float64 {
-	return math.Sqrt(a.Len2())
+	return Sqrt(a.Len2())
 }
 
 // Returns scaled version of given vector by the given scalar.
@@ -58,7 +52,7 @@ func (a Vec3) Sub(b Vec3) Vec3 {
 
 // Returns dot product of specified vectors.
 func (a Vec3) Dot(b Vec3) float64 {
-	return a.X*b.X + a.Y*b.Y + a.Z*b.Z
+	return a.X * b.X + a.Y * b.Y + a.Z * b.Z
 }
 
 // Returns projection of given vector onto an axis specified with vector B.
@@ -109,22 +103,22 @@ func (a Vec3) Cot2(b Vec3) float64 {
 
 // Returns cosine of angle between two vectors.
 func (a Vec3) Cos(b Vec3) float64 {
-	return math.Sqrt(a.Cos2(b))
+	return Sqrt(a.Cos2(b))
 }
 
 // Returns sine of angle between two vectors.
 func (a Vec3) Sin(b Vec3) float64 {
-	return math.Sqrt(a.Sin2(b))
+	return Sqrt(a.Sin2(b))
 }
 
 // Returns tangent of angle between two vectors
 func (a Vec3) Tan(b Vec3) float64 {
-	return math.Sqrt(a.Tan2(b))
+	return Sqrt(a.Tan2(b))
 }
 
 // Return cotangent of angle between two vectors
 func (a Vec3) Cot(b Vec3) float64 {
-	return math.Sqrt(b.Cot2(b))
+	return Sqrt(b.Cot2(b))
 }
 
 // Return product of matrix application to the vector. Corresponds to math
